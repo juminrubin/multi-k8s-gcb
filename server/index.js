@@ -55,7 +55,7 @@ app.get("/values/current", (req, res) => {
 app.post("/values", async (req, res) => {
   const index = req.body.index;
 
-  if (!index || index.length < 1 || !(/^-?[\d.]+(?:e-?\d+)?$/.test(str))) {
+  if (!index || index.length < 1 || !(/^-?[\d.]+(?:e-?\d+)?$/.test(index))) {
     return res.status(422).send("Index value is empty or invalid");
   }
 
