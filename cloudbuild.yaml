@@ -1,0 +1,19 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/multi-client-image', 'client/.' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/multi-client-image']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/multi-server-image', 'server/.' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/multi-server-image']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/multi-worker-image', 'worker/.' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/multi-worker-image']
+  images:
+  - 'gcr.io/$PROJECT_ID/multi-client-image'
+  images:
+  - 'gcr.io/$PROJECT_ID/multi-server-image'
+  images:
+  - 'gcr.io/$PROJECT_ID/multi-worker-image'
